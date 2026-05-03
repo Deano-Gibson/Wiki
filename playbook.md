@@ -1,187 +1,438 @@
 # DK Digital Engineering Playbook
 
-A practical, opinionated system for choosing and using tools across projects (e.g., SKIIP). This document evolves with real usage.
+A living reference of software engineering tools, categorized by system layer.  
+Use this as a lookup, comparison, and decision-support resource.
 
 ---
 
-# How to Use This
+## How to Use This
 
 For any project, answer:
-
 1. Auth → which provider?
-2. Data → which DB + access pattern?
+2. Data → which DB?
 3. Compute → serverless vs container?
 4. Async → queues / workflows?
 5. Delivery → CI/CD + hosting?
 6. Observability → logs/metrics/traces?
-7. AI → where does it add value?
+7. AI → where does it fit?
 
 ---
 
-# Decision Frameworks
-
-## Auth
-
-* Fast MVP: Supabase Auth / Clerk
-* Enterprise / SSO: Auth0 / Keycloak
-* Avoid: rolling your own
-
-## Database
-
-* Relational + consistency: PostgreSQL
-* Serverless + scale: Neon / PlanetScale
-* Flexible schema: MongoDB
-* Cache / rate limiting: Redis
-
-## Realtime
-
-* Simple: Supabase Realtime / Pusher
-* Custom: WebSockets (Socket.IO)
-
-## Async / Workflows
-
-* Simple jobs: BullMQ
-* Complex long-running: Temporal
-* Event streaming: Kafka (only when needed)
-
-## Deployment
-
-* Frontend: Vercel
-* Fullstack simple: Railway / Render
-* Edge heavy: Cloudflare
-* Complex infra: AWS
-
-## Observability
-
-* Errors: Sentry
-* Metrics: Prometheus + Grafana
-* Tracing: OpenTelemetry
-
-## Payments
-
-* Default: Stripe
-
-## AI Layer
-
-* Coding: Codex / Cursor
-* Reasoning/docs: Claude
-* Agents: Cline / Aider
+# 1. Version Control & Collaboration
+- Git — foundational distributed version control
+- GitHub — Actions, PRs, ecosystem
+- GitLab — full DevOps platform
+- Bitbucket — Atlassian integration
+- Perforce — large binary repos
+- Gitea — lightweight self-hosted Git
+- Graphite — stacked diffs workflow
+- Phabricator — legacy review tool
 
 ---
 
-# Core Stack (Recommended Baseline)
-
-* Frontend: React + Next.js
-* Backend: Supabase (Postgres + RLS + Edge Functions)
-* Hosting: Vercel + Cloudflare
-* Payments: Stripe
-* Notifications: Resend + Twilio
-* CI/CD: GitHub Actions
-* Monitoring: Sentry
-
----
-
-# Tool Profiles (Living Entries)
-
-## Supabase
-
-* Best for: Rapid MVP, Postgres + auth + realtime
-* Avoid when: heavy custom backend logic, complex workflows
-* Alternatives: Firebase, custom Node backend
-* Used in: SKIIP
-
-## Stripe
-
-* Best for: Payments, subscriptions, marketplace flows
-* Avoid when: extreme custom financial flows
-* Notes: Use webhooks + idempotency
-
-## Vercel
-
-* Best for: Frontend + serverless APIs
-* Avoid when: long-running backend jobs
-
-## Cloudflare
-
-* Best for: DNS, CDN, edge functions
-* Notes: great performance + security layer
-
-## GitHub Actions
-
-* Best for: CI/CD automation
-* Notes: integrate lint, tests, deploy
-
-## Redis
-
-* Best for: caching, rate limiting, queues
-
-## BullMQ
-
-* Best for: background jobs
-
-## Sentry
-
-* Best for: error tracking in production
+# 2. CI/CD & DevOps
+- GitHub Actions
+- GitLab CI/CD
+- Jenkins
+- CircleCI
+- Travis CI
+- ArgoCD (GitOps)
+- Flux (GitOps)
+- Dagger (pipelines as code)
+- Earthly (reproducible builds)
+- Buildkite
+- TeamCity
 
 ---
 
-# Patterns (What matters more than tools)
-
-## Server-Authoritative Systems
-
-* All sensitive logic runs server-side
-* Client is just a UI layer
-
-## Event-Driven Architecture
-
-* Actions trigger events
-* Events trigger jobs (notifications, updates)
-
-## Idempotency
-
-* Every external action (payments, webhooks) must be safe to retry
-
-## Observability First
-
-* Logs, metrics, traces from day 1
+# 3. Containers & Infrastructure
+- Docker
+- Kubernetes
+- Helm
+- Terraform
+- Pulumi
+- Fly.io
+- Railway
+- Render
+- Podman
+- k3s
+- k9s
+- Lens
 
 ---
 
-# SKIIP Reference Architecture
-
-```mermaid
-flowchart TD
-A[Client App] --> B[API Layer]
-B --> C[Supabase]
-C --> D[(Postgres)]
-B --> E[Stripe]
-E --> F[Webhook Handler]
-F --> C
-B --> G[Queue]
-G --> H[Workers]
-H --> I[Notifications]
-C --> J[Realtime Updates]
-```
+# 4. Cloud & Deployment
+- AWS
+- Azure
+- GCP
+- Vercel
+- Netlify
+- Cloudflare
+- DigitalOcean
+- Linode
+- Hetzner
 
 ---
 
-# Evaluation Template (Use when adding new tools)
+# 5. Databases
 
-Tool Name:
+## Relational
+- PostgreSQL
+- MySQL
+- SQLite
+- MariaDB
 
-* Category:
-* Best for:
-* When to avoid:
-* Alternatives:
-* Cost model:
-* Complexity:
-* DK Digital usage:
+## Serverless
+- Neon
+- PlanetScale
+- Supabase
+- Turso
+- CockroachDB
+
+## NoSQL
+- MongoDB
+- Cassandra
+- DynamoDB
+- Firestore
+- FaunaDB
+
+## Cache
+- Redis
+- Memcached
+- Valkey
+- Dragonfly
+
+## Search
+- Elasticsearch
+- Meilisearch
+- Algolia
+- Typesense
+- OpenSearch
+
+## Graph
+- Neo4j
+- ArangoDB
+
+## Time-series
+- InfluxDB
+- TimescaleDB
+- VictoriaMetrics
 
 ---
 
-# Notes / Future Additions
+# 6. Backend Frameworks
 
-* Add comparisons (Supabase vs Firebase vs custom)
-* Add cost benchmarks
-* Add scaling patterns
-* Add AI agent workflows
+## JS/TS
+- Node.js
+- Express
+- NestJS
+- Fastify
+- Hono
+- Elysia
+
+## Python
+- FastAPI
+- Django
+- Flask
+- Litestar
+
+## Go
+- Gin
+- Fiber
+- Echo
+
+## JVM
+- Spring Boot
+- Quarkus
+- Micronaut
+
+## Other
+- ASP.NET Core
+- Laravel
+- Rails
+- Phoenix
+- Actix
+
+---
+
+# 7. Frontend & Fullstack
+
+## UI
+- React
+- Vue
+- Angular
+- Svelte
+- Solid
+- Preact
+
+## Fullstack
+- Next.js
+- Remix
+- Nuxt
+- SvelteKit
+- Astro
+
+## Styling
+- Tailwind
+- CSS Modules
+- Styled Components
+- UnoCSS
+
+---
+
+# 8. Testing
+- Jest
+- Vitest
+- Mocha
+- PyTest
+- Testing Library
+- Playwright
+- Cypress
+- Pact
+- k6
+- Locust
+- Chaos Monkey
+
+---
+
+# 9. Observability
+- Prometheus
+- Grafana
+- Datadog
+- Sentry
+- ELK Stack
+- OpenTelemetry
+- Jaeger
+- Loki
+
+---
+
+# 10. Auth
+- Auth0
+- Clerk
+- Firebase Auth
+- Supabase Auth
+- NextAuth / Auth.js
+- Lucia
+- Magic
+- Stytch
+- Keycloak
+- Ory
+- Zitadel
+- WorkOS
+
+---
+
+# 11. Messaging
+- RabbitMQ
+- Kafka
+- NATS
+- SQS
+- SNS
+- Redpanda
+- Pulsar
+
+---
+
+# 12. Background Jobs
+- BullMQ
+- Celery
+- Sidekiq
+- Temporal
+- Inngest
+- Trigger.dev
+
+---
+
+# 13. API Tools
+- Postman
+- Insomnia
+- Swagger
+- Stoplight
+- Bruno
+- curl
+- tRPC
+- GraphQL
+- gRPC
+
+---
+
+# 14. Automation
+- Zapier
+- Make
+- n8n
+- Activepieces
+- Pipedream
+
+---
+
+# 15. API Gateway
+- Kong
+- NGINX
+- Traefik
+- AWS API Gateway
+- Caddy
+- HAProxy
+
+---
+
+# 16. Feature Flags
+- LaunchDarkly
+- Unleash
+- GrowthBook
+- Flagsmith
+
+---
+
+# 17. Analytics
+- Google Analytics
+- PostHog
+- Mixpanel
+- Amplitude
+- Plausible
+- Umami
+
+---
+
+# 18. Notifications
+- Resend
+- SendGrid
+- Mailgun
+- Postmark
+- SES
+- Twilio
+- Novu
+- OneSignal
+
+---
+
+# 19. Data Pipelines
+- Airflow
+- Dagster
+- dbt
+- Airbyte
+- Fivetran
+- Prefect
+
+---
+
+# 20. Security
+- Vault
+- Doppler
+- Snyk
+- Dependabot
+- Trivy
+- Semgrep
+- SonarQube
+
+---
+
+# 21. AI Tools
+
+## Coding
+- Cursor
+- Copilot
+- Claude Code
+- Aider
+- Cline
+- Devin
+
+## Frameworks
+- LangChain
+- LlamaIndex
+- AutoGen
+- CrewAI
+
+## Infra
+- Replicate
+- Modal
+- Hugging Face
+- Ollama
+
+## Eval
+- LangSmith
+- W&B
+- PromptLayer
+- Helicone
+
+---
+
+# 22. Vector DBs
+- Pinecone
+- Weaviate
+- Chroma
+- Qdrant
+- Milvus
+- pgvector
+
+---
+
+# 23. Design
+- Figma
+- Framer
+- Lovable
+- v0
+- Bolt.new
+- Stitch
+
+---
+
+# 24. Mobile
+- React Native
+- Expo
+- Flutter
+- Tauri
+- Electron
+
+---
+
+# 25. Payments
+- Stripe
+- PayPal
+- Paddle
+- Lemon Squeezy
+
+---
+
+# 26. Data & BI
+- Snowflake
+- BigQuery
+- Redshift
+- Metabase
+- Tableau
+- Power BI
+
+---
+
+# 27. CDN & DNS
+- Cloudflare
+- Akamai
+- Fastly
+- Route53
+
+---
+
+# 28. Dev Experience
+- VS Code
+- JetBrains
+- Neovim
+- ESLint
+- Prettier
+- Biome
+- Ruff
+
+---
+
+# 29. Terminal Tools
+- tmux
+- fzf
+- ripgrep
+- bat
+- jq
+- zoxide
+- starship
+
+---
+
+# 30. Notes
+(Add your own learnings, comparisons, and decisions here)
