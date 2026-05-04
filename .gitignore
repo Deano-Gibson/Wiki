@@ -1,0 +1,13 @@
+.obsidian/workspace.json
+.obsidian/workspaces.json
+.trash/
+private/
+notes/private/
+attachments/private/
+site/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db

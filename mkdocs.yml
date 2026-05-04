@@ -1,0 +1,81 @@
+site_name: Personal Knowledge Docs
+site_description: A curated personal knowledge base for reusable engineering, delivery, documentation, systems, tools, templates, and lessons learned.
+site_url: https://deano-gibson.github.io/Wiki/
+repo_url: https://github.com/Deano-Gibson/Wiki
+repo_name: Deano-Gibson/Wiki
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+exclude_docs: |
+  !/templates/
+  !/templates/**
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.action.edit
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Start Here: start-here.md
+  - Knowledge Map: knowledge-map.md
+  - Templates:
+      - Overview: templates/index.md
+  - Decisions:
+      - Overview: decisions/index.md
+      - Choose Auth: decisions/choose-auth-provider.md
+      - Choose Database: decisions/choose-database.md
+      - Choose Hosting: decisions/choose-hosting.md
+      - Choose Observability: decisions/choose-observability.md
+      - Choose AI App Stack: decisions/choose-ai-app-stack.md
+      - Best Free MVP Stack: decisions/best-free-mvp-stack.md
+      - Client Project Stack: decisions/recommended-client-project-stack.md
+  - Engineering:
+      - Engineering Playbook: engineering/engineering-playbook.md
+  - Delivery:
+      - Delivery Standards: delivery/delivery-standards.md
+  - Documentation:
+      - Documentation Standards: documentation/documentation-standards.md
+      - File Structure Standards: documentation/file-structure-standards.md
+  - Systems:
+      - Knowledge Workflow: systems/knowledge-workflow.md
+  - Experience:
+      - Experience Lessons: experience/index.md
+  - Tools:
+      - Master Index: tools/master-index.md
+      - Free Tools: tools/free-tools.md
+  - Tags: tags.md
